@@ -2,6 +2,8 @@ package pl.coderslab.Dao;
 
 import org.springframework.stereotype.Repository;
 import pl.coderslab.Entity.Book;
+import pl.coderslab.Entity.Publisher;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -27,4 +29,6 @@ public class BookDao {
     public void delete(Book book) {
         entityManager.remove(entityManager.contains(book) ?
                 book : entityManager.merge(book)); }
+
+
 }

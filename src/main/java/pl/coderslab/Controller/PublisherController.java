@@ -1,6 +1,7 @@
 package pl.coderslab.Controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,8 +17,9 @@ public class PublisherController {
     @RequestMapping(value = "/publisher/add", produces = "text/html; charset=utf-8")
     @ResponseBody
     public String add() {
-       Publisher publisher = new Publisher();
-       publisher.setName("Wacław");
+        Publisher publisher = Publisher.builder().name("Marian").build();
+//       Publisher publisher = new Publisher();
+//       publisher.setName("Wacław");
         dao.savePublisher(publisher);
         return "Id dodanej książki to:"
                 + publisher.getId();
@@ -44,4 +46,5 @@ public class PublisherController {
         dao.delete(publisher);
         return "deleted";
     }
+
 }
