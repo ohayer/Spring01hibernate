@@ -1,11 +1,15 @@
 package pl.coderslab.Controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.Dao.AuthorDao;
 import pl.coderslab.Entity.Author;
+import pl.coderslab.Entity.Publisher;
+
+import java.util.List;
 
 @Controller
 public class AuthorController {
@@ -48,5 +52,11 @@ public class AuthorController {
         Author author = dao.findByIdA(id);
         dao.delete(author);
         return "deleted";
+    }
+    @GetMapping(value = "/find/all/author")
+    @ResponseBody
+    public String findAllPublisher(){
+        List<Author> authors = dao.findAll();
+        return authors.toString();
     }
 }

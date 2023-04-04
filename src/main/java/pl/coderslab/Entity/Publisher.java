@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "publishers")
 @Builder
-@ToString(exclude = "id")
+@ToString//(exclude = "id")
 public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

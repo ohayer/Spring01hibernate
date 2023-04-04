@@ -83,5 +83,10 @@ public class BookController {
         bookDao.delete(book);
         return "deleted";
     }
-
+    @RequestMapping("/book/find/publisher")
+    @ResponseBody
+    public String findBookAllPublisher(){
+        List<Book> book = bookDao.BookHavePublisher();
+        return book.toString();
+    }
 }

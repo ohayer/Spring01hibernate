@@ -21,7 +21,7 @@ public class Book {
     @ManyToOne
     private Publisher publisher;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Author> authors;
 
 
