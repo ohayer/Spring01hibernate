@@ -46,6 +46,7 @@ public class BookDao {
     public List<Book> BookHavePublisherParam(Publisher pub){
         Query query = entityManager.createQuery("SELECT b FROM Book b JOIN fetch b.authors WHERE ISNULL(:pub)");
         query.setParameter("pub",pub);
+        query.setMaxResults(5);
         return query.getResultList();
     }
     public List<Book> BookHaveAuthorParam(Author author){
