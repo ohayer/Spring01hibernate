@@ -36,4 +36,8 @@ public class PublisherDao {
         Query query = entityManager.createQuery("SELECT p FROM Publisher p");
         return query.getResultList();
     }
+    public List<Publisher> getList() {
+        Query query = entityManager.createQuery("SELECT p FROM Publisher p");
+        return query.getResultList();
+    }
 }

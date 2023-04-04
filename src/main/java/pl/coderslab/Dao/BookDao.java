@@ -26,6 +26,10 @@ public class BookDao {
     public Book findById(long id) {
         return entityManager.find(Book.class, id);
     }
+    public List<Book> findAll(){
+        Query query = entityManager.createQuery("SELECT b FROM Book b");
+        return query.getResultList();
+    }
 
     //aktualizacja
     public void update(Book book) {
@@ -54,4 +58,6 @@ public class BookDao {
         query.setParameter("author",author);
         return query.getResultList();
     }
+
+
 }

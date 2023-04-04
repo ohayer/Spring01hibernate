@@ -16,12 +16,17 @@ public class StudentController {
 //    @GetMapping("form")
 //    public String form() {
 //        return "studentform";
-//    }
+    //    }
     @GetMapping("/add")
     public String showStudentForm(Model model) {
         Student student = new Student();
-        model.addAttribute("student",student);
+        model.addAttribute("student", student);
         return "studentform";
+    }
+    @PostMapping("/add")
+    @ResponseBody
+    public String StudentAdd(Student student) {
+     return student.toString();
     }
     @ModelAttribute("countries")
     public List<String> countries() {
@@ -34,10 +39,5 @@ public class StudentController {
     @ModelAttribute("hobbies")
     public List<String> hobbies() {
         return Arrays.asList("taniec","jazda na motorze","programowanie","czytanie","sztuki walki","gra w szachy");
-    }
-    @PostMapping("/add")
-    @ResponseBody
-    public String StudentAdd(Student student) {
-     return student.toString();
     }
 }
