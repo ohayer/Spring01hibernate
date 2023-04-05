@@ -1,6 +1,7 @@
 package pl.coderslab.Controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -77,16 +78,22 @@ public class BookController {
     }
 
     @RequestMapping("/book/delete/{id}")
-    @ResponseBody
+
     public String deleteBook(@PathVariable long id) {
         Book book = bookDao.findById(id);
         bookDao.delete(book);
-        return "deleted";
+        return "redirect:http://localhost:8080/books";
     }
     @RequestMapping("/book/find/publisher")
     @ResponseBody
     public String findBookAllPublisher(){
         List<Book> book = bookDao.BookHavePublisher();
         return book.toString();
+    }
+    @RequestMapping("/books")
+    public String allBooks(Model model){
+        List<Book> book = bookDao.findAll();
+        model.addAttribute("books", book);
+        return "books";
     }
 }
