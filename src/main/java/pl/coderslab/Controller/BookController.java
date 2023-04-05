@@ -2,6 +2,7 @@ package pl.coderslab.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,6 +12,7 @@ import pl.coderslab.Dao.PublisherDao;
 import pl.coderslab.Entity.Author;
 import pl.coderslab.Entity.Book;
 import pl.coderslab.Entity.Publisher;
+import pl.coderslab.respository.BookRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,13 +24,15 @@ public class BookController {
     private final BookDao bookDao;
     private final PublisherDao publisherDao;
     private final AuthorDao authorDao;
+    private BookRepository bookRepository;
 
 
 
-    public BookController(BookDao bookDao, PublisherDao publisherDao, AuthorDao authorDao) {
+    public BookController(BookDao bookDao, PublisherDao publisherDao, AuthorDao authorDao, BookRepository bookRepository) {
         this.bookDao = bookDao;
         this.publisherDao = publisherDao;
         this.authorDao = authorDao;
+        this.bookRepository = bookRepository;
     }
 
     @RequestMapping(value = "/book/add", produces = "text/html; charset=utf-8")
@@ -97,4 +101,19 @@ public class BookController {
         model.addAttribute("books", book);
         return "books";
     }
+    @GetMapping(value = "/books/find/{title}", produces = "text/html; charset=utf-8")
+    @ResponseBody
+    public String findBookByTitle(@PathVariable String title){
+        Book book = bookRepository.findAllByTitle(title);
+        if (book == null){
+            return "Nie ma takiej książki";
+        }else {
+            return book.toString();
+        }
+    }
+//    @GetMapping("/books/find/${title")
+//    public Optional<Book> findBookByTitle(@PathVariable String title){
+//        Optional<Book> book = bookRepository.findAllByTitle(title);
+//        return book;
+//    }
 }
