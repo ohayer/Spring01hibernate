@@ -14,6 +14,7 @@ import pl.coderslab.Entity.Book;
 import pl.coderslab.Entity.Publisher;
 
 import java.util.Collection;
+import java.util.List;
 
 @Controller
 public class BookFormController {
@@ -35,7 +36,7 @@ public class BookFormController {
     }
 
     @PostMapping("/books/form")
-    public String StudentAdd(@ModelAttribute("book") @Validated Book book, BindingResult result) {
+    public String BookAdd(@ModelAttribute("book") @Validated Book book, BindingResult result) {
         if (result.hasErrors()) {
             return "bookform";
         }

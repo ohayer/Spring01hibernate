@@ -14,10 +14,14 @@
 <body>
 <body>
 <form:form method="post" modelAttribute="book">
-    TYTUŁ:<form:input path="title"/><br/>
-    DESCIPTION:<form:textarea path="description"/><br/>
-    AUTOR:  <form:select path="authors" items="${authors}" itemLabel="firstName"/><br/>
-    WYDAWCA:<form:select path="publisher" items="${publishers}" itemLabel="name"/><br/>
+    TYTUŁ:<form:input path="title"/>
+    <form:errors path="title"/><br/>
+    DESCIPTION:<form:textarea path="description"/>
+    <form:errors path="description"/><br/>
+    AUTORZY:  <form:checkboxes path="authors" items="${authors}" itemLabel="firstName" itemValue="id"/><br/>
+    <form:errors path="authors"/><br/>
+    WYDAWCA:<form:select path="publisher" items="${publishers}" itemLabel="name" itemValue="id"/>
+    <form:errors path="publisher"/><br/>
     <input type="submit" value="Zapisz">
 </form:form>
 </body>

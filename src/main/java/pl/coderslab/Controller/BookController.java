@@ -48,6 +48,7 @@ public class BookController {
         book.setTitle("Kopciuszek");
         book.setAuthor("Dawid Podsiadlo");
         book.setPublisher(publisher);
+        book.setDescription("Bajka dla dzieci");
 
         //book set authors
        // book.setAuthors(authors);

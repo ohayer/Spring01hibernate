@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "publishers")
 @Builder
-@ToString//(exclude = "id")
+@ToString
 public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

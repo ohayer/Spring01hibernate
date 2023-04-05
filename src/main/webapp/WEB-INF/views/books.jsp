@@ -50,7 +50,7 @@
     <thead>
     <tr>
         <th>ID</th>
-        <th>AUTOR</th>
+        <th>AUTORZY</th>
         <th>TYTUŁ</th>
         <th>WYDAWNICTWO</th>
         <th>DESCRIPTION</th>
@@ -61,7 +61,11 @@
     <c:forEach items="${books}" var="book">
         <tr>
             <td>${book.id}</td>
-            <td>${book.author}</td>
+            <td>
+                <c:forEach items="${book.authors}" var="author">
+                    ${author.firstName} ${author.lastName}
+                </c:forEach>
+            </td>
             <td>${book.title}</td>
             <td>${book.publisher.name}</td>
             <td>${book.description}</td>
@@ -85,7 +89,5 @@
     }
     }
 </script>
-
-
 </body>
 </html>
